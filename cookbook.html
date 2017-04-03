@@ -1,0 +1,956 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="cookbookstyle.css" type="text/css" rel="stylsheet"/>
+	<link href="clock_style.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script>
+    $(document).bind('mobileinit',function(){
+        $.mobile.changePage.defaults.changeHash = false;
+        $.mobile.hashListeningEnabled = false;
+        $.mobile.pushStateEnabled = false;
+    });
+	</script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<div data-role="page" id="homepage"> <!--Home Page--> 
+	<div data-role="header">
+			College Cook and Go - Home
+	</div>
+	<div data-role="navbar" id="navb" data-grid="d" data-theme="a" data-iconpos="left"><!--beginning of nav bar-->
+		<ul>
+			<li><a href="#homepage" class="ui-btn-active">Home</a></li>
+			<li><a href="#cookbook">Cook Book</a></li>
+			<li><a href="#createrecipe">Create a Recipe</a></li>
+			<li><a href="#timer" data-icon="clock">Set a Timer</a></li>
+			<li><a href="#favorites" data-icon="star" >Favorite Recipes</a></li>
+		</ul>
+	</div> <!--end of nav bar-->
+		<p id="homeP">Welcome to the College Cook and Go - Your one stop place to create and view your favorite quick recipies for your hungry, poor, student needs. We recommend you add your own recipes first by clicking the create a recipe button.</p>
+	</div><!--end of homepage-->
+
+	<div data-role="page" id="cookbook">
+	<div data-role="header">
+			College Cook and Go - Cookbook
+	</div>
+	<div data-role="navbar" data-grid="d" data-theme="a" data-iconpos="left"><!--beginning of nav bar-->
+		<ul>
+			<li><a href="#homepage" >Home</a></li>
+			<li><a href="#cookbook" class="ui-btn-active">Cook Book</a></li>
+			<li><a href="#createrecipe">Create a Recipe</a></li>
+			<li><a href="#timer" data-icon="clock">Set a Timer</a></li>
+			<li><a href="#favorites" data-icon="star" >Favorite Recipes</a></li>
+		</ul>
+		
+	</div> <!--end of nav bar-->
+	<!--Filter bar-->
+		<div data-role="collapsible" data-theme="a" data-collapsed="true">
+			<h4>Cookbook</h4>
+				<ul data-role="listview" data-theme="a" data-split-icon="delete" id="mylist">
+				</ul>
+		</div>
+		<div data-role="collapsible" data-theme="a" data-collapsed="true">
+			<h4>Breakfast Recipes</h4>
+				<ul data-role="listview" data-theme="a" data-split-icon="delete" id="breakfastlist">
+				</ul>
+		</div>
+		<div data-role="collapsible" data-theme="a" data-collapsed="true">
+			<h4>Lunch Recipes</h4>
+				<ul data-role="listview" data-theme="a" data-split-icon="delete" id="lunchlist">
+				</ul>
+		</div>
+		<div data-role="collapsible" data-theme="a" data-collapsed="true">
+			<h4>Dinner Recipes</h4>
+				<ul data-role="listview" data-theme="a" data-split-icon="delete" id="dinnerlist">
+				</ul>
+		</div>
+		<div data-role="collapsible" data-theme="a" data-collapsed="true">
+			<h4>Easy Recipes</h4>
+				<ul data-role="listview" data-theme="a" data-split-icon="delete" id="easylist">
+				</ul>
+		</div>
+		<div data-role="collapsible" data-theme="a" data-collapsed="true">
+			<h4>Medium Recipes</h4>
+				<ul data-role="listview" data-theme="a" data-split-icon="delete" id="mediumlist">
+				</ul>
+		</div>
+		<div data-role="collapsible" data-theme="a" data-collapsed="true">
+			<h4>Hard Recipes</h4>
+				<ul data-role="listview" data-theme="a" data-split-icon="delete" id="hardlist">
+				</ul>
+		</div>
+		
+	</div><!--end of cookbook-->
+
+	<div data-role="page" id="createrecipe">
+	<div data-role="header">
+			College Cook and Go - Create a Recipe
+	</div>
+	<div data-role="navbar" id="navb" data-grid="d" data-theme="a" data-iconpos="left"><!--beginning of nav bar-->
+		<ul>
+			<li><a href="#homepage" >Home</a></li>
+			<li><a href="#cookbook" >Cook Book</a></li>
+			<li><a href="#createrecipe" class="ui-btn-active">Create a Recipe</a></li>
+			<li><a href="#timer" data-icon="clock">Set a Timer</a></li>
+			<li><a href="#favorites" data-icon="star" >Favorite Recipes</a></li>
+		</ul>
+	</div> <!--end of nav bar-->
+		<form onsubmit=return "mealname"; onsumbit=return "select_meal"; onsubmit=return "numOfCalories"; onsubmit=return "amountOfTime"; onsubmit=return "numberofingredients"; onsubmit=return "numberofsteps"; onsubmit=return "ingredients_text"; onsubmit=return "steps_text";>
+			<div data-role="fieldcontain" class="ui-hide-label">
+				<label for="mealname">Meal Name:</label>
+				<input type="text" name="mealname" id="mealname" value="" placeholder="Meal Name"/>
+			</div>
+			<label for="mealType" align="left">Meal Type: (Breakfast, Lunch, Dinner)</label>
+			<select name="mealType" id="select_meal">
+ 				 <option value="Breakfast" id="mealOptions">Breakfast</option>
+  				 <option value="Lunch" id="mealOptions">Lunch</option>
+ 				 <option value="Dinner" id="mealOptions">Dinner</option>
+			</select>
+			<label for="numberofcalories" align="left">Number of Calories</label>
+			<input type="number" data-clear-btn="true" name="calories" id="numOfCalories" value="">
+			<label for="timetocreate" align="left">Time to Make (10 minutes or less):</label>
+			<input type="number" step="0.01" min="0" data-clear-btn="true" name="time" id="amountOfTime" value="">
+			<label for="mealType" align="left">Difficulty: (Easy, Medium, Hard)</label>
+			<select name="mealType" id="difficulty">
+ 				 <option value="Easy" id="difficulty">Easy</option>
+  				 <option value="Medium" id="difficulty">Medium</option>
+ 				 <option value="Hard" id="difficulty">Hard</option>
+			</select>
+			<label for="ingredients_text" align="left">Ingredients:</label>
+			<textarea name="ingredients_text" id="ingredients_text" ></textarea>
+			<label for="steps_text" align="left">Instructions:</label>
+			<textarea name="steps_text" id="steps_text"></textarea>
+			<input type="submit" value="Add Recipe"/>
+		</form>
+	</div><!--end of createrecipe-->
+
+	<div data-role="page" data-theme="a" id="timer">
+	<div data-role="header">
+			College Cook and Go - Timer
+	</div>
+
+	<div data-role="navbar" id="navb" data-grid="d" data-iconpos="left"><!--beginning of nav bar-->
+		<ul>
+			<li><a href="#homepage" >Home</a></li>
+			<li><a href="#cookbook" >Cook Book</a></li>
+			<li><a href="#createrecipe">Create a Recipe</a></li>
+			<li><a href="#timer" data-icon="clock" class="ui-btn-active">Set a Timer</a></li>
+			<li><a href="#favorites" data-icon="star" >Favorite Recipes</a></li>
+		</ul>
+	</div> <!--end of nav bar-->
+
+	<!--html for timer-->
+	<div id="countdown" class="countdownHolder">
+
+	<span class="countDiv countDiv1"></span>
+
+	<div class="countMinutes">
+	
+		<span class="position">
+			<span class="digit static"></span>
+		</span>
+		<span class="position">
+			<span class="digit static"></span>
+		</span>
+	</div>
+
+	<span class="countDiv countDiv2"></span>
+
+	<div class="countSeconds">
+
+		<span class="position">
+			<span class="digit static"></span>
+		</span>
+		<span class="position">
+			<span class="digit static"></span>
+		</span>
+		Minutes:
+	</div>
+
+</div>
+<label for="minutes" align:left>Minutes:</label>
+<select name="minutes" id="minutes_select">
+		<option>0</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+		<option>6</option>
+		<option>7</option>
+		<option>8</option>
+		<option>9</option>
+		<option>10</option>
+	</select>
+	<label for="seconds" align:left>Seconds:</label>
+	<select name="seconds" id="seconds_select">
+		<option>0</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+</select>
+<button name="setTimer" id="setTimer">Set Time</button>
+	<!--end of timer html-->
+
+</div>
+
+
+	</div><!--end of timer-->
+
+	<div data-role="page" id="favorites">
+	<div data-role="header">
+			College Cook and Go - Favorites
+	</div>
+	<div data-role="navbar" data-grid="d" data-iconpos="left"><!--beginning of nav bar-->
+		<ul>
+			<li><a href="#homepage" >Home</a></li>
+			<li><a href="#cookbook" >Cook Book</a></li>
+			<li><a href="#createrecipe">Create a Recipe</a></li>
+			<li><a href="#timer" data-icon="clock">Set a Timer</a></li>
+			<li><a href="#favorites" data-icon="star" class="ui-btn-active">Favorite Recipes</a></li>
+		</ul>
+	</div> <!--end of nav bar-->
+	<div>
+		<ul data-role="listview" data-split-icon="delete" id="favlist"></ul>
+	</div>
+	</div><!--end of favorites-->
+
+<div data-role="page" id="itemInfo">
+	<div data-role="navbar">
+		<button><a href="#cookbook" id="itemInfoBack">Back</a></button>
+		<button><a href='' id="favAdder"> Add to Favorites </a></button>
+	</div>
+	<div data-role="fieldcontain">
+	<form id="itemInfoList">
+	</form>
+	</div>
+</div><!--end of itemInfo-->
+
+<div data-role="page" id="favoriteInfo">
+	<div data-role="navbar" id="navb">
+		<button><a href="#favorites" id="favoriteInfoBack">Back</a></button>
+	</div>
+	<div data-role="fieldcontain">
+	<form id="itemInfoList">
+	</form>
+	</div>
+</div><!--end of itemInfo-->
+
+<script language = javascript type="text/javascript">
+//recipe object
+function recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text){
+	this.name = name;
+	this.mealType = mealType;
+	this.calories = calories;
+	this.time = time;
+	this.difficulty = difficulty;
+	this.ingredients_text = ingredients_text;
+	this.instructions_text = instructions_text;
+}
+
+function nameObj(name){
+	this.name = name;
+}
+
+//submit new recipe js
+var recipeArray = new Array();
+var breakfastArray = new Array();
+var lunchArray = new Array();
+var dinnerArray = new Array();
+var easyArray = new Array();
+var medArray = new Array();
+var hardArray = new Array();
+var favArray = new Array();
+var nameArray = new Array();
+var i;
+var add;
+var filter;
+var breakfastCount = 0;
+var lunchCount =0;
+var dinnerCount =0;
+///////////////////////////////////////Create recipe method///////////////////////////////////
+$("#createrecipe").off().on("submit", function(event){
+	event.preventDefault();
+	document.getElementById("createrecipe");
+	//put recipe in easy array and in breakfast array
+	if($("#mealname").val()!="" && $("#select_meal").val()=="Breakfast" && ($("#numOfCalories").val()!=""|| $("#numOfCalories").val()=="") || $("#amountOfTime").val()<=10 && $("#difficulty").val()=="Easy" && $("#ingredients_text").val()!="" && $("#steps_text").val()!=""){
+		var name = document.getElementById("mealname").value;
+		var mealType = document.getElementById("select_meal").value;
+		var calories = document.getElementById("numOfCalories").value;
+		var time = document.getElementById("amountOfTime").value;
+		var difficulty = document.getElementById("difficulty").value;
+		var ingredients_text = document.getElementById("ingredients_text").value;
+		var instructions_text = document.getElementById("steps_text").value;
+		var nextRecipeItem = recipeArray.length;
+		var nextBreakfastItem = breakfastArray.length;
+		var nextEasyItem = easyArray.length;
+		var nextFavItem = favArray.length;
+		var nextNameItem = nameArray.length;
+		recipeArray[nextRecipeItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		breakfastArray[nextBreakfastItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		easyArray[nextEasyItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		favArray[nextFavItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		nameArray[nextNameItem] = new nameObj(name);
+		var stringifyRecipeArray = JSON.stringify(recipeArray);
+		var stringifyEasyArray = JSON.stringify(easyArray);
+		var stringifyBreakfastArray = JSON.stringify(breakfastArray);
+		var stringifyFavArray = JSON.stringify(favArray);
+		var stringifyNameArray = JSON.stringify(nameArray);
+		window.localStorage.setItem("#createrecipe", stringifyRecipeArray); //stores recipe array
+		window.localStorage.setItem("#easy", stringifyEasyArray); //stores easy array
+		window.localStorage.setItem("#breakfast_meal", stringifyBreakfastArray); //stores dinner array
+		window.localStorage.setItem("#mealname", stringifyNameArray); //stores name array;
+		window.localStorage.setItem("#favs", stringifyFavArray); //stores fav array
+		$("#favlist").append($("<li><a href='#itemInfo' id='favbook'>"+name+"</a><a href='' class='deleteicon'></a></li>"));
+	}
+
+//breakfast item in medium category
+	if($("#mealname").val()!="" && $("#select_meal").val()=="Breakfast" && ($("#numOfCalories").val()!=""|| $("#numOfCalories").val()=="") || $("#amountOfTime").val()<=10 && $("#difficulty").val()=="Medium" && $("#ingredients_text").val()!="" && $("#steps_text").val()!=""){
+		var name = document.getElementById("mealname").value;
+		var mealType = document.getElementById("select_meal").value;
+		var calories = document.getElementById("numOfCalories").value;
+		var time = document.getElementById("amountOfTime").value;
+		var difficulty = document.getElementById("difficulty").value;
+		var ingredients_text = document.getElementById("ingredients_text").value;
+		var instructions_text = document.getElementById("steps_text").value;
+		var nextRecipeItem = recipeArray.length;
+		var nextBreakfastItem = breakfastArray.length;
+		var nextMedItem = medArray.length;
+		var nextFavItem = favArray.length;
+		var nextNameItem = nameArray.length;
+		filter=0;
+		recipeArray[nextRecipeItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		breakfastArray[nextBreakfastItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		medArray[nextMedItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		favArray[nextFavItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		nameArray[nextNameItem] = new nameObj(name);
+		//add in checks and balances to make sure user inputs correct amount of stuff they say they do, have counter of some kind
+		var stringifyRecipeArray = JSON.stringify(recipeArray);
+		var stringifyMedArray = JSON.stringify(medArray);
+		var stringifyBreakfastArray = JSON.stringify(breakfastArray);
+		var stringifyFavArray = JSON.stringify(favArray);
+		var stringifyNameArray = JSON.stringify(nameArray);
+		window.localStorage.setItem("#createrecipe", stringifyRecipeArray); //stores recipe array
+		window.localStorage.setItem("#medium", stringifyMedArray); //stores hard array
+		window.localStorage.setItem("#breakfast_meal", stringifyBreakfastArray); //stores dinner array
+		window.localStorage.setItem("#mealname", stringifyNameArray); //stores name array;
+		window.localStorage.setItem("#favs", stringifyFavArray); //stores fav array		
+		
+		$("#favlist").append($("<li><a href='#itemInfo' id='favbook'>"+name+"</a><a href='' class='deleteicon'></a></li>"));
+		
+	}
+
+	//breakfast item in hard category
+if($("#mealname").val()!="" && $("#select_meal").val()=="Breakfast" && ($("#numOfCalories").val()!=""|| $("#numOfCalories").val()=="") || $("#amountOfTime").val()<=10 && $("#difficulty").val()=="Hard" && $("#ingredients_text").val()!="" && $("#steps_text").val()!=""){
+		var name = document.getElementById("mealname").value;
+		var mealType = document.getElementById("select_meal").value;
+		var calories = document.getElementById("numOfCalories").value;
+		var time = document.getElementById("amountOfTime").value;
+		var difficulty = document.getElementById("difficulty").value;
+		var ingredients_text = document.getElementById("ingredients_text").value;
+		var instructions_text = document.getElementById("steps_text").value;
+		var nextRecipeItem = recipeArray.length;
+		var nextBreakfastItem = breakfastArray.length;
+		var nextHardItem = hardArray.length;
+		var nextFavItem = favArray.length;
+		var nextNameItem = nameArray.length;
+		filter=0;
+		recipeArray[nextRecipeItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		breakfastArray[nextBreakfastItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		hardArray[nextHardItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		favArray[nextFavItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		nameArray[nextNameItem] = new nameObj(name);
+		//add in checks and balances to make sure user inputs correct amount of stuff they say they do, have counter of some kind
+		var stringifyRecipeArray = JSON.stringify(recipeArray);
+		var stringifyHardArray = JSON.stringify(hardArray);
+		var stringifyBreakfastArray = JSON.stringify(breakfastArray);
+		var stringifyFavArray = JSON.stringify(favArray);
+		var stringifyNameArray = JSON.stringify(nameArray);
+		window.localStorage.setItem("#createrecipe", stringifyRecipeArray); //stores recipe array
+		window.localStorage.setItem("#hard", stringifyHardArray); //stores hard array
+		window.localStorage.setItem("#breakfast_meal", stringifyBreakfastArray); //stores dinner array
+		window.localStorage.setItem("#mealname", stringifyNameArray); //stores name array;
+		window.localStorage.setItem("#favs", stringifyFavArray); //stores fav array
+		$("#favlist").append($("<li><a href='#itemInfo' id='favbook'>"+name+"</a><a href='' class='deleteicon'></a></li>"));
+	}
+
+	//put recipe in easy array and in lunch array
+	if($("#mealname").val()!="" && $("#select_meal").val()=="Lunch" && ($("#numOfCalories").val()!=""|| $("#numOfCalories").val()=="") || $("#amountOfTime").val()<=10 && $("#difficulty").val()=="Easy" && $("#ingredients_text").val()!="" && $("#steps_text").val()!=""){
+		var name = document.getElementById("mealname").value;
+		var mealType = document.getElementById("select_meal").value;
+		var calories = document.getElementById("numOfCalories").value;
+		var time = document.getElementById("amountOfTime").value;
+		var difficulty = document.getElementById("difficulty").value;
+		var ingredients_text = document.getElementById("ingredients_text").value;
+		var instructions_text = document.getElementById("steps_text").value;
+		var nextRecipeItem = recipeArray.length;
+		var nextLunchItem = lunchArray.length;
+		var nextEasyItem = easyArray.length;
+		var nextFavItem = favArray.length;
+		var nextNameItem = nameArray.length;
+		recipeArray[nextRecipeItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		lunchArray[nextLunchItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		easyArray[nextEasyItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		favArray[nextFavItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		nameArray[nextNameItem] = new nameObj(name);
+		//add in checks and balances to make sure user inputs correct amount of stuff they say they do, have counter of some kind
+		var stringifyRecipeArray = JSON.stringify(recipeArray);
+		var stringifyEasyArray = JSON.stringify(easyArray);
+		var stringifyLunchArray = JSON.stringify(lunchArray);
+		var stringifyFavArray = JSON.stringify(favArray);
+		var stringifyNameArray = JSON.stringify(nameArray);
+		window.localStorage.setItem("#createrecipe", stringifyRecipeArray); //stores recipe array
+		window.localStorage.setItem("#easy", stringifyEasyArray); //stores hard array
+		window.localStorage.setItem("#lunch_meal", stringifyLunchArray); //stores dinner array
+		window.localStorage.setItem("#mealname", stringifyNameArray); //stores name array;
+		window.localStorage.setItem("#favs", stringifyFavArray); //stores fav array
+		$("#favlist").append($("<li><a href='#itemInfo' id='favbook'>"+name+"</a><a href='' class='deleteicon'></a></li>"));
+}
+
+
+//Lunch Item in Medium Category
+if($("#mealname").val()!="" && $("#select_meal").val()=="Lunch" && ($("#numOfCalories").val()!=""|| $("#numOfCalories").val()=="") || $("#amountOfTime").val()<=10 && $("#difficulty").val()=="Medium" && $("#ingredients_text").val()!="" && $("#steps_text").val()!=""){
+
+		var name = document.getElementById("mealname").value;
+		var mealType = document.getElementById("select_meal").value;
+		var calories = document.getElementById("numOfCalories").value;
+		var time = document.getElementById("amountOfTime").value;
+		var difficulty = document.getElementById("difficulty").value;
+		var ingredients_text = document.getElementById("ingredients_text").value;
+		var instructions_text = document.getElementById("steps_text").value;
+		var nextRecipeItem = recipeArray.length;
+		var nextLunchItem = lunchArray.length;
+		var nextMedItem = medArray.length;
+		var nextFavItem = favArray.length;
+		var nextNameItem = nameArray.length;
+		recipeArray[nextRecipeItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		lunchArray[nextLunchItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		medArray[nextMedItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		favArray[nextFavItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		nameArray[nextNameItem] = new nameObj(name);
+		//add in checks and balances to make sure user inputs correct amount of stuff they say they do, have counter of some kind
+		var stringifyRecipeArray = JSON.stringify(recipeArray);
+		var stringifyMedArray = JSON.stringify(medArray);
+		var stringifyLunchArray = JSON.stringify(lunchArray);
+		var stringifyFavArray = JSON.stringify(favArray);
+		var stringifyNameArray = JSON.stringify(nameArray);
+		window.localStorage.setItem("#createrecipe", stringifyRecipeArray); //stores recipe array
+		window.localStorage.setItem("#medium", stringifyMedArray); //stores hard array
+		window.localStorage.setItem("#lunch_meal", stringifyLunchArray); //stores dinner array
+		window.localStorage.setItem("#mealname", stringifyNameArray); //stores name array;
+		window.localStorage.setItem("#favs", stringifyFavArray); //stores fav array
+		$("#favlist").append($("<li><a href='#itemInfo' id='favbook'>"+name+"</a><a href='' class='deleteicon'></a></li>"));
+	}
+
+//Lunch Item in Hard Category
+if($("#mealname").val()!="" && $("#select_meal").val()=="Lunch" && ($("#numOfCalories").val()!=""|| $("#numOfCalories").val()=="") || $("#amountOfTime").val()<=10 && $("#difficulty").val()=="Hard" && $("#ingredients_text").val()!="" && $("#steps_text").val()!=""){
+		var name = document.getElementById("mealname").value;
+		var mealType = document.getElementById("select_meal").value;
+		var calories = document.getElementById("numOfCalories").value;
+		var time = document.getElementById("amountOfTime").value;
+		var difficulty = document.getElementById("difficulty").value;
+		var ingredients_text = document.getElementById("ingredients_text").value;
+		var instructions_text = document.getElementById("steps_text").value;
+		var nextRecipeItem = recipeArray.length;
+		var nextLunchItem = lunchArray.length;
+		var nextHardItem = hardArray.length;
+		var nextFavItem = favArray.length;
+		var nextNameItem = nameArray.length;
+		recipeArray[nextRecipeItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		lunchArray[nextLunchItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		hardArray[nextHardItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		favArray[nextFavItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		nameArray[nextNameItem] = new nameObj(name);
+		//add in checks and balances to make sure user inputs correct amount of stuff they say they do, have counter of some kind
+		var stringifyRecipeArray = JSON.stringify(recipeArray);
+		var stringifyHardArray = JSON.stringify(hardArray);
+		var stringifyLunchArray = JSON.stringify(lunchArray);
+		var stringifyFavArray = JSON.stringify(favArray);
+		var stringifyNameArray = JSON.stringify(nameArray);
+		window.localStorage.setItem("#createrecipe", stringifyRecipeArray); //stores recipe array
+		window.localStorage.setItem("#hard", stringifyHardArray); //stores easy array
+		window.localStorage.setItem("#lunch_meal", stringifyLunchArray); //stores dinner array
+		window.localStorage.setItem("#mealname", stringifyNameArray); //stores name array;
+		window.localStorage.setItem("#favs", stringifyFavArray); //stores fav array
+		$("#favlist").append($("<li><a href='#itemInfo' id='favbook'>"+name+"</a><a href='' class='deleteicon'></a></li>"));
+	}
+
+	//put recipe in easy array and in dinner array
+if($("#mealname").val()!="" && $("#select_meal").val()=="Dinner" && ($("#numOfCalories").val()!=""|| $("#numOfCalories").val()=="") || $("#amountOfTime").val()<=10 && $("#difficulty").val()=="Easy" && $("#ingredients_text").val()!="" && $("#steps_text").val()!=""){
+		var name = document.getElementById("mealname").value;
+		var mealType = document.getElementById("select_meal").value;
+		var calories = document.getElementById("numOfCalories").value;
+		var time = document.getElementById("amountOfTime").value;
+		var difficulty = document.getElementById("difficulty").value;
+		var ingredients_text = document.getElementById("ingredients_text").value;
+		var instructions_text = document.getElementById("steps_text").value;
+		var nextRecipeItem = recipeArray.length;
+		var nextDinnerItem = dinnerArray.length;
+		var nextEasyItem = easyArray.length;
+		var nextFavItem = favArray.length;
+		var nextNameItem = nameArray.length;
+		nameArray[nextNameItem] = new nameObj(name);
+		recipeArray[nextRecipeItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		dinnerArray[nextDinnerItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		easyArray[nextEasyItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		favArray[nextFavItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		//add in checks and balances to make sure user inputs correct amount of stuff they say they do, have counter of some kind
+		var stringifyRecipeArray = JSON.stringify(recipeArray);
+		var stringifyEasyArray = JSON.stringify(easyArray);
+		var stringifyDinnerArray = JSON.stringify(dinnerArray);
+		var stringifyFavArray = JSON.stringify(favArray);
+		var stringifyNameArray = JSON.stringify(nameArray);
+		window.localStorage.setItem("#createrecipe", stringifyRecipeArray); //stores recipe array
+		window.localStorage.setItem("#easy", stringifyEasyArray); //stores hard array
+		window.localStorage.setItem("#dinner_meal", stringifyDinnerArray); //stores dinner array
+		window.localStorage.setItem("#mealname", stringifyNameArray); //stores name array;
+		window.localStorage.setItem("#favs", stringifyFavArray); //stores fav array
+		$("#favlist").append($("<li><a href='#itemInfo' id='favbook'>"+name+"</a><a href='' class='deleteicon'></a></li>"));
+	}
+
+//Dinner Item in Medium Category
+if($("#mealname").val()!="" && $("#select_meal").val()=="Dinner" && ($("#numOfCalories").val()!=""|| $("#numOfCalories").val()=="") || $("#amountOfTime").val()<=10 && $("#difficulty").val()=="Medium" && $("#ingredients_text").val()!="" && $("#steps_text").val()!=""){
+		var name = document.getElementById("mealname").value;
+		var mealType = document.getElementById("select_meal").value;
+		var calories = document.getElementById("numOfCalories").value;
+		var time = document.getElementById("amountOfTime").value;
+		var difficulty = document.getElementById("difficulty").value;
+		var ingredients_text = document.getElementById("ingredients_text").value;
+		var instructions_text = document.getElementById("steps_text").value;
+		var nextRecipeItem = recipeArray.length;
+		var nextDinnerItem = dinnerArray.length;
+		var nextMedItem = medArray.length;
+		var nextFavItem = favArray.length;
+		var nextNameItem = nameArray.length;
+		recipeArray[nextRecipeItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		dinnerArray[nextDinnerItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		medArray[nextMedItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		favArray[nextFavItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		nameArray[nextNameItem]=new nameObj(name);
+		//add in checks and balances to make sure user inputs correct amount of stuff they say they do, have counter of some kind
+		var stringifyRecipeArray = JSON.stringify(recipeArray);
+		var stringifyMedArray = JSON.stringify(medArray);
+		var stringifyDinnerArray = JSON.stringify(dinnerArray);
+		var stringifyFavArray = JSON.stringify(favArray);
+		var stringifyNameArray =  JSON.stringify(nameArray);
+		window.localStorage.setItem("#favs", stringifyFavArray); //stores fav array
+		window.localStorage.setItem("#createrecipe", stringifyRecipeArray); //stores recipe array
+		window.localStorage.setItem("#medium", stringifyHardArray); //stores hard array
+		window.localStorage.setItem("#dinner_meal", stringifyDinnerArray); //stores dinner array
+		window.localStorage.setItem("#mealname", stringifyNameArray); //stores name array;
+		$("#favlist").append($("<li><a href='#itemInfo' id='favbook'>"+name+"</a><a href='' class='deleteicon'></a></li>"));
+	}
+
+
+//Dinner Item in Hard Category
+ if($("#mealname").val()!="" && $("#select_meal").val()=="Dinner" && ($("#numOfCalories").val()!=""|| $("#numOfCalories").val()=="") || $("#amountOfTime").val()<=10 && $("#difficulty").val()=="Hard" && $("#ingredients_text").val()!="" && $("#steps_text").val()!=""){
+		var name = document.getElementById("mealname").value;
+		var mealType = document.getElementById("select_meal").value;
+		var calories = document.getElementById("numOfCalories").value;
+		var time = document.getElementById("amountOfTime").value;
+		var difficulty = document.getElementById("difficulty").value;
+		var ingredients_text = document.getElementById("ingredients_text").value;
+		var instructions_text = document.getElementById("steps_text").value;
+		var nextRecipeItem = recipeArray.length;
+		var nextDinnerItem = dinnerArray.length;
+		var nextHardItem = hardArray.length;
+		var nextFavItem = favArray.length;
+		var nextNameItem = nameArray.length;
+		recipeArray[nextRecipeItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		dinnerArray[nextDinnerItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		hardArray[nextHardItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		favArray[nextFavItem] = new recipe(name, mealType, calories, time, difficulty, ingredients_text, instructions_text);
+		nameArray[nextNameItem] = new nameObj(name);
+		//add in checks and balances to make sure user inputs correct amount of stuff they say they do, have counter of some kind
+		var stringifyRecipeArray = JSON.stringify(recipeArray);
+		var stringifyHardArray = JSON.stringify(hardArray);
+		var stringifyDinnerArray = JSON.stringify(dinnerArray);
+		var stringifyFavArray = JSON.stringify(favArray);
+		var stringifyNameArray = JSON.stringify(nameArray);
+		window.localStorage.setItem("#favs", stringifyFavArray); //stores fav array
+		window.localStorage.setItem("#createrecipe", stringifyRecipeArray); //stores recipe array
+		window.localStorage.setItem("#hard", stringifyHardArray); //stores hard array
+		window.localStorage.setItem("#dinner_meal", stringifyDinnerArray); //stores dinner array
+		window.localStorage.setItem("#mealname", stringifyNameArray); //stores name array;
+		
+	}
+
+	if(($("#mealname").val()=="" || $("#amountOfTime").val() == "" || $("#numberofsteps").val()=="" || $("numberofingredients").val() =="" || $("#ingredients_text").val()=="" || $("#steps_text").val()=="")){
+		console.log("Insert necessary data.");
+	}
+});
+
+//////appends element to listview/////////
+$("#cookbook").off().on("click", function(event){
+	var favoriteItem = window.localStorage.getItem("#favs");
+	var v = jQuery.parseJSON(favoriteItem);
+	var namelistview = window.localStorage.getItem("#createrecipe");
+	var n = jQuery.parseJSON(namelistview);
+	var breakfastlistview = window.localStorage.getItem("#breakfast_meal");
+	var b = jQuery.parseJSON(breakfastlistview);
+	var lunchlistview = window.localStorage.getItem("#lunch_meal");
+	var L = jQuery.parseJSON(lunchlistview);
+	var dinnerlistview = window.localStorage.getItem("#dinner_meal");
+	var D = jQuery.parseJSON(dinnerlistview);
+	var easylistview = window.localStorage.getItem("#easy");
+	var E = jQuery.parseJSON(easylistview);
+	var mediumlistview = window.localStorage.getItem("#medium");
+	var M = jQuery.parseJSON(mediumlistview);
+	var hardlistview = window.localStorage.getItem("#hard");
+	var HA = jQuery.parseJSON(hardlistview);
+
+	//mylist == default cookbook
+	$("#mylist").empty();
+	for(var i=0; i<n.length; i++){
+		$("#mylist").append($("<li><a href='#itemInfo' id='cookbookid'>"+ n[i].name+"</a><a href='' id='deleteicon'></a></li>")); //puts item in list
+		$("#mylist").listview('refresh'); //refresh list
+	}
+
+	//breakfastlist == breakfast filter
+	$("#breakfastlist").empty();
+	for(var i=0; i< b.length; i++){
+		$("#breakfastlist").append($("<li><a href='#itemInfo' id='breakfastbook'>"+ b[i].name+"</a><a href='' id='deleteicon'></a></li>"));
+		$("#breakfastlist").listview('refresh');
+	}
+
+	//lunchlist == lunch filter
+	$("#lunchlist").empty();
+	for(var i=0; i< L.length; i++){
+		$("#lunchlist").append($("<li><a href='#itemInfo' id='lunchbook'>"+ L[i].name+"</a><a href='' id='deleteicon'></a></li>"));
+		$("#lunchlist").listview('refresh');
+	}
+
+	//dinnerlist == dinner filter
+	$("#dinnerlist").empty();
+	for(var i=0; i< D.length; i++){
+		$("#dinnerlist").append($("<li><a href='#itemInfo' id='dinnerbook'>"+ D[i].name+"</a><a href='' id='deleteicon'></a></li>"));
+		$("#dinnerlist").listview('refresh');
+	}
+	//easylist == easy filter
+	$("#easylist").empty();
+	for(var i=0; i< E.length; i++){
+		$("#easylist").append($("<li><a href='#itemInfo' id='easybook'>"+ E[i].name+"</a><a href='' id='deleteicon'></a></li>"));
+		$("#easylist").listview('refresh');
+	}
+	//mediumlist == medium filter
+	$("#mediumlist").empty();
+	for(var i=0; i< M.length; i++){
+		$("#mediumlist").append($("<li><a href='#itemInfo' id='mediumbook'>"+ M[i].name+"</a><a href='' id='deleteicon'></a></li>"));
+		$("#mediumlist").listview('refresh');
+	}
+	//hardlist == hard filter
+	$("#hardlist").empty();
+	for(var i=0; i<HA.length; i++){
+		$("#hardlist").append($("<li><a href='#itemInfo' id='hardbook'>"+ HA[i].name+"</a><a href='' id='deleteicon'></a></li>"));
+		$("#hardlist").listview('refresh');
+	}
+});
+
+//////when cookbook item is clicked, take them to information on the item//////////
+$("#mylist").on("click", '#cookbookid', function(event){
+	var recipeInfo = window.localStorage.getItem("#createrecipe");
+	var rec = jQuery.parseJSON(recipeInfo);
+	var i;
+	i = ($(this).closest("li").index());
+
+	$("#itemInfoList").append($("<label id='recipeclicked'> Name: "+rec[i].name+"</label>"))
+	$("#itemInfoList").append($("<label id='recipeclicked'> Meal Type: "+rec[i].mealType+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Calories: "+rec[i].calories+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Time to make (estimate): "+rec[i].time +" Minutes</label>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Ingredients: "+rec[i].ingredients_text+"</textarea>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Instructions: "+rec[i].instructions_text+"</textarea>"));
+});
+
+///////opens up specific breakfastlist info/////////
+$("#breakfastlist").on("click", '#breakfastbook', function(event){
+	var breakfastlistview = window.localStorage.getItem("#breakfast_meal");
+	var b = jQuery.parseJSON(breakfastlistview);
+	var recipeInfo = window.localStorage.getItem("#createrecipe");
+	var rec = jQuery.parseJSON(recipeInfo);
+	var i = ($(this).closest("li").index());
+	$("#itemInfoList").append($("<label id='recipeclicked'> Name: "+b[i].name+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Meal Type: "+b[i].mealType+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Calories: "+b[i].calories+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Time to make (estimate): "+b[i].time +" Minutes</label>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Ingredients: "+b[i].ingredients_text+"</textarea>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Instructions: "+b[i].instructions_text+"</textarea>"));
+	
+});
+
+/////////opens up specific lunchlist info//////////
+$("#lunchlist").on("click", '#lunchbook', function(event){
+	var lunchlistview = window.localStorage.getItem("#lunch_meal");
+	var lun = jQuery.parseJSON(lunchlistview);
+	var recipeInfo = window.localStorage.getItem("#createrecipe");
+	var rec = jQuery.parseJSON(recipeInfo);
+	var i = ($(this).closest("li").index());
+	$("#itemInfoList").append($("<label id='recipeclicked'> Name: "+lun[i].name+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Meal Type: "+lun[i].mealType+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Calories: "+lun[i].calories+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Time to make (estimate): "+lun[i].time +" Minutes</label>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Ingredients: "+lun[i].ingredients_text+"</textarea>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Instructions: "+lun[i].instructions_text+"</textarea>"));
+});
+
+/////////opens up specific dinnerlist info//////////
+$("#dinnerlist").on("click", '#dinnerbook', function(event){
+	var dinnerlistview = window.localStorage.getItem("#dinner_meal");
+	var din = jQuery.parseJSON(dinnerlistview);
+	var recipeInfo = window.localStorage.getItem("#createrecipe");
+	var rec = jQuery.parseJSON(recipeInfo);
+	var i = ($(this).closest("li").index());
+	$("#itemInfoList").append($("<label id='recipeclicked'> Name: "+din[i].name+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Meal Type: "+din[i].mealType+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Calories: "+din[i].calories+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Time to make (estimate): "+din[i].time +" Minutes</label>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Ingredients: "+din[i].ingredients_text+"</textarea>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Instructions: "+din[i].instructions_text+"</textarea>"));
+});
+
+/////////opens up specific easylist info//////////
+$("#easylist").on("click", '#easybook', function(event){
+	var easylistview = window.localStorage.getItem("#easy");
+	var ease = jQuery.parseJSON(easylistview);
+	var recipeInfo = window.localStorage.getItem("#createrecipe");
+	var rec = jQuery.parseJSON(recipeInfo);
+	var i = ($(this).closest("li").index());
+	$("#itemInfoList").append($("<label id='recipeclicked'> Name: "+ease[i].name+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Meal Type: "+ease[i].mealType+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Calories: "+ease[i].calories+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Time to make (estimate): "+ease[i].time +" Minutes</label>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Ingredients: "+ease[i].ingredients_text+"</textarea>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Instructions: "+ease[i].instructions_text+"</textarea>"));
+
+});
+
+/////////opens up specific mediumlist info//////////
+$("#mediumlist").on("click", '#mediumbook', function(event){
+	var mediumlistview = window.localStorage.getItem("#medium");
+	var b = jQuery.parseJSON(mediumlistview);
+	var recipeInfo = window.localStorage.getItem("#createrecipe");
+	var rec = jQuery.parseJSON(recipeInfo);
+	var i = ($(this).closest("li").index());
+	$("#itemInfoList").append($("<label id='recipeclicked'> Name: "+b[i].name+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Meal Type: "+b[i].mealType+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Calories: "+b[i].calories+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Time to make (estimate): "+b[i].time +" Minutes</label>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Ingredients: "+b[i].ingredients_text+"</textarea>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Instructions: "+b[i].instructions_text+"</textarea>"));
+});
+
+/////////opens up specific hardlist info//////////
+$("#hardlist").on("click", '#hardbook', function(event){
+	var hardlistview = window.localStorage.getItem("#hard");
+	var b = jQuery.parseJSON(hardlistview);
+	var recipeInfo = window.localStorage.getItem("#createrecipe");
+	var rec = jQuery.parseJSON(recipeInfo);
+	var i = ($(this).closest("li").index());
+	$("#itemInfoList").append($("<label id='recipeclicked'> Name: "+b[i].name+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Meal Type: "+b[i].mealType+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Calories: "+b[i].calories+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Time to make (estimate): "+b[i].time +" Minutes</label>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Ingredients: "+b[i].ingredients_text+"</textarea>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Instructions: "+b[i].instructions_text+"</textarea>"));
+});
+
+///////opens up specific favorite info////////
+$("#favlist").on("click", '#favbook', function(event){
+	var recipeInfo = window.localStorage.getItem("#createrecipe");
+	var rec = jQuery.parseJSON(recipeInfo);
+	var i;
+	i = ($(this).closest("li").index());
+
+	$("#itemInfoList").append($("<label id='recipeclicked'> Name: "+rec[i].name+"</label>"))
+	$("#itemInfoList").append($("<label id='recipeclicked'> Meal Type: "+rec[i].mealType+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Calories: "+rec[i].calories+"</label>"));
+	$("#itemInfoList").append($("<label id='recipeclicked'> Time to make (estimate): "+rec[i].time +" Minutes</label>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Ingredients: "+rec[i].ingredients_text+"</textarea>"));
+	$("#itemInfoList").append($("<textarea disabled id='recipeclicked'> Instructions: "+rec[i].instructions_text+"</textarea>"));
+});
+
+$("#itemInfoBack").on("click", function(event){
+	$("#itemInfoList").empty();
+});
+
+$("#favAdder").on("click", function(event){
+	$("").append("<label id=''> Name: "+rec[i].name+"</label>")
+});
+
+$("ul").on("click", "#deleteicon", function(event){
+	 $("#cookbookid").closest("li").remove();
+});
+
+$("ul").on("click", ".deleteicon", function(event){ // change id for delete button on favoritelist
+	 $("#favbook").closest("li").remove();
+});
+
+/////////////////////////Timer Methods////////////////////////////////////////////////////////////////
+$("#setTimer").off().on("click", function(event){
+	$("#minutes_select").val();
+	$("#seconds_select").val();
+function init(elem, options){
+		elem.addClass('countdownHolder');
+
+		// Creating the markup inside the container
+		$.each(['Minutes','Seconds'],function(i){
+			$('<span class="count'+this+'">').html(
+				'<span class="position">\
+					<span class="digit static">0</span>\
+				</span>\
+				<span class="position">\
+					<span class="digit static">0</span>\
+				</span>'
+			).appendTo(elem);
+
+			if(this!="Seconds"){
+				elem.append('<span class="countDiv countDiv'+i+'">Seconds:</span>');
+			}
+		});
+
+	}
+
+	// Creates an animated transition between the two numbers
+	function switchDigit(position,number){
+
+		var digit = position.find('.digit')
+
+		if(digit.is(':animated')){
+			return false;
+		}
+
+		if(position.data('digit') == number){
+			// We are already showing this number
+			return false;
+		}
+
+		position.data('digit', number);
+
+		var replacement = $('<div>',{
+			'class':'digit',
+			css:{
+				top:'-2.1em',
+				opacity:0
+			},
+			html:number
+		});
+
+		// The .static class is added when the animation
+		// completes. This makes it run smoother.
+
+		digit
+			.before(replacement)
+			.removeClass('static')
+			.animate({top:'2.5em',opacity:0},'fast',function(){
+				digit.remove();
+			})
+
+		replacement
+			.delay(100)
+			.animate({top:0,opacity:1},'fast',function(){
+				replacement.addClass('static');
+			});
+	}
+
+	(function($){
+
+	// Number of seconds in every time division
+	var minutes	= 60;
+
+	// Creating the plugin
+	$.fn.countdown = function(prop){
+
+		var options = $.extend({
+			callback	: function(){},
+			timestamp	: 0
+		},prop);
+
+		var left, positions;
+
+		// Initialize the plugin
+		init(this, options);
+
+		positions = this.find('.position');
+
+		(function tick(){
+
+			// Time left
+			left = Math.floor((options.timestamp - (new Date())) / 1000);
+
+			if(left < 0){
+				left = 0;
+			}
+
+			// Number of minutes left
+			m = Math.floor(left / minutes);
+			updateDuo(4, 5, m);
+			left -= m*minutes;
+
+			// Number of seconds left
+			s = left;
+			updateDuo(6, 7, s);
+
+			// Calling an optional user supplied callback
+			options.callback(m, s);
+
+			// Scheduling another call of this function in 1s
+			setTimeout(tick, 1000);
+		})();
+
+		// This function updates two digit positions at once
+		function updateDuo(minor,major,value){
+			switchDigit(positions.eq(minor),Math.floor(value/10)%10);
+			switchDigit(positions.eq(major),value%10);
+		}
+
+		return this;
+	};
+
+	/* The two helper functions go here */
+})(jQuery);
+
+$(function(){
+
+	var note = $('#note'),
+		ts = new Date(2012, 0, 1),
+		newYear = true;
+
+	if((new Date()) > ts){
+		// The new year is here! Count towards something else.
+		// Notice the *1000 at the end - time must be in milliseconds
+		ts = (new Date()).getTime() + 60*60*1000;
+		newYear = false;
+	}
+
+	$('#countdown').countdown({
+		timestamp	: ts,
+		callback	: function(minutes, seconds){
+
+			var message = "This will be done in ";
+
+			message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+			message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+
+			if(newYear){
+				message += "left until the new year!";
+			}
+			else {
+				message += "left to 10 days from now!";
+			}
+
+			note.html(message);
+		}
+	});
+
+});
+});
+</script>
+
+</body>
+</html>
